@@ -1,0 +1,48 @@
+{
+  "welcomeFile": "/ui/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout",
+    "logoutPage": "/logout-page.html"
+  },
+  "routes": [
+    {
+      "source": "^/api/",
+      "target": "/",
+      "destination": "back-dest",
+      "csrfProtection": false,
+      "scope": {
+        "GET": [
+          "$XSAPPNAME.Display"
+        ],
+        "POST": [
+          "$XSAPPNAME.Update"
+        ],
+        "DELETE": [
+          "$XSAPPNAME.Update"
+        ],
+        "default": "$XSAPPNAME.Display"
+      }
+    },
+    {
+      "source": "^/currentUser",
+      "destination": "back-dest"
+    },
+    {
+      "source": "^/ui/index.html",
+      "target": "index.html",
+      "localDir": "web",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    },
+    {
+      "source": "^/ui/(.*)",
+      "target": "$1",
+      "localDir": "web"
+    },
+    {
+      "source": "^/logout-page.html$",
+      "localDir": "openResources",
+      "authenticationType": "none"
+    }
+  ]
+}

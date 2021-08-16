@@ -1,0 +1,24 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" height="100%"
+	controllerName="sap.ui.core.sample.RoutingMasterDetail.restApp.controller.Master" id="MasterView">
+	<Page title="Users" class="sapUiContentPadding">
+		<headerContent>
+			<Text text="Hello, {username>/givenName} (#{username>/employeeNumber})!" class="sapUiSmallMargin" />
+			<Button press="handleLogout" text="Logout" type="Reject"/>
+		</headerContent>
+		<content>
+			<List id="users" items="{/}" mode="Delete" delete="handleDelete">
+				<items>
+					<StandardListItem title="{name} ({age})" description="Id: {id}" info="Added by: {user}"/>
+				</items>
+			</List>
+		</content>
+		<footer id="masterFooter">
+			<Toolbar id="masterToolbar">
+				<content>
+					<ToolbarSpacer/>
+					<Button type="Emphasized" press="onOpenDialog" text="Add User" icon="sap-icon://add"/>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,23 @@
+---
+applications:
+- name: sapcpcfdemo-i307487
+  path: backend
+  buildpacks:
+    - nodejs_buildpack
+  memory: 128M
+  services:
+  - sapcpcfdemo-uaa
+- name: sapcpcfdemoapr-i307487
+  path: appRouter
+  buildpacks:
+    - nodejs_buildpack
+  memory: 128M
+  env:
+    destinations: >
+      [
+        {"name":"back-dest",
+         "url":"https://sapcpcfdemo-i307487.cfapps.eu10.hana.ondemand.com",
+         "forwardAuthToken": true}
+      ]
+  services:
+  - sapcpcfdemo-uaa

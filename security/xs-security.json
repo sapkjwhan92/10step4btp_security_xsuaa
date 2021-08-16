@@ -1,0 +1,58 @@
+{
+  "xsappname": "sapcpcfdemo",
+  "description": "Sample SAP CP CF app with AppRouter and XSUAA",
+  "tenant-mode": "dedicated",
+  "oauth2-configuration": {
+    "token-validity": 900,
+    "redirect-uris": [
+      "https://*.cfapps.eu10.hana.ondemand.com/**"
+    ],
+    "autoapprove": "true"
+  },
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Display",
+      "description": "Display Users"
+    },
+    {
+      "name": "$XSAPPNAME.Update",
+      "description": "Update Users"
+    }
+  ],
+  "attributes": [
+    { 
+      "name": "employeeNumber", 
+      "description": "Employee Number", 
+      "valueType": "s",
+      "valueRequired": false
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "View Users",
+      "scope-references": [
+        "$XSAPPNAME.Display"
+      ],
+      "attribute-references": [
+        {
+         "name": "employeeNumber"
+        }
+      ]
+    },
+    {
+      "name": "Manager",
+      "description": "Maintain Users",
+      "scope-references": [
+        "$XSAPPNAME.Display",
+        "$XSAPPNAME.Update"
+      ],
+      "attribute-references": [
+        {
+         "name": "employeeNumber"
+        }
+      ]
+    }
+  ],
+  "authorities": ["$XSAPPNAME.Display", "$XSAPPNAME.Update"]
+}
